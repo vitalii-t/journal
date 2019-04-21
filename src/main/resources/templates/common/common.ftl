@@ -17,6 +17,7 @@
             <button class="w3-btn w3-hover-light-blue w3-round-large" onclick="location.href='/even'">Even week</button>
             <button class="w3-btn w3-hover-green w3-round-large" onclick="location.href='/odd'">Odd week</button>
             <button class="w3-btn w3-hover-red w3-round-large" onclick="location.href='/schedule'">Schedule</button>
+            <button class="w3-btn w3-hover-gray w3-round-large" onclick="location.href='/users'">Users</button>
         </div>
     </div>
     <#nested>

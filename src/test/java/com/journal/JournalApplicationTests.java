@@ -11,6 +11,7 @@ public class JournalApplicationTests {
 
     @Test
     public void contextLoads() {
+
     }
 
 }

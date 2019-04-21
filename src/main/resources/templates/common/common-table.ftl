@@ -8,14 +8,13 @@
         </div>
 <div align="center">
         <div align="center">Find subject by name</div>
-        <form method="get" action="/${spec} ">
+        <form method="get" action="/${spec}">
             <input type="text" name="filter" value="${filt}">
             <button type="submit">Find</button>
         </form>
     <p></p>
 </div>
 <div>
-
         <table align="center" style="width: 70%" cellspacing="0" border="1">
             <th>Week day</th>
             <th>Index number</th>

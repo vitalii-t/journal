@@ -1,15 +1,19 @@
 package com.journal.data.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalTime;
 
 @Entity
 @Table(name = "schedule")
-@Data @NoArgsConstructor
-public class Schedule {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Schedule implements Serializable {
 
     @Id
     @Column(name = "id")
@@ -22,12 +26,4 @@ public class Schedule {
     @Column(name = "end_time")
     private LocalTime end;
 
-    @Override
-    public String toString() {
-        return "Schedule{" +
-                "№ " + id +
-                ", beginning=" + beginning +
-                ", end=" + end +
-                '}';
-    }
 }
