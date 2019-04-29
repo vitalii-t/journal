@@ -12,9 +12,12 @@
 <#import "common/common.ftl" as c>
 
 <@c.page>
-<div class="left p">
-    <p><h2>Welcome to the CI-161`s group main page.</h2></p>
-    <p>Here you can see our schedule and some info about our group.
-    </p>
+    <div align="center">
+        <button class="w3-btn w3-hover-blue w3-round-large" onclick="location.href='/login'">Login</button>
+        <button class="w3-btn w3-hover-blue w3-round-large" onclick="location.href='/registration'">Registration</button>
+    </div>
+<div class="left">
+    <h2>Welcome to the CI-161`s group main page.</h2>
+    <p>Here you can see our schedule and some info about our group.</p>
 </div>
 </@c.page>

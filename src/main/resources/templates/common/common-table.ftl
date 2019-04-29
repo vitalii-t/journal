@@ -9,7 +9,7 @@
 <div align="center">
         <div align="center">Find subject by name</div>
         <form method="get" action="/${spec}">
-            <input type="text" name="filter" value="${filt}">
+            <input type="text" name="filter" value="${filt}"/>
             <button type="submit">Find</button>
         </form>
     <p></p>

@@ -4,6 +4,7 @@ import com.journal.business.service.ScheduleService;
 import com.journal.data.entities.Schedule;
 import com.journal.data.entities.Week;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Controller
+@PreAuthorize("hasAnyAuthority('ADMIN','MONITOR','STUDENT')")
 public class ScheduleController {
 
     private ScheduleService scheduleService;

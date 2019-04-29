@@ -6,24 +6,22 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalTime;
+import java.util.List;
 
 @Entity
-@Table(name = "schedule")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class Schedule implements Serializable {
+@Table(name = "groups")
+@Data @NoArgsConstructor @AllArgsConstructor
+public class Group implements Serializable {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "begin_time")
-    private LocalTime beginning;
+    @Column(name = "identifier")
+    private String identifier;
 
-    @Column(name = "end_time")
-    private LocalTime end;
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "group")
+    private List<User> users;
 
 }
