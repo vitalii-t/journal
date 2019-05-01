@@ -26,7 +26,7 @@ public class ScheduleService {
 
     public List<Week> filterWeek(String filter, String weekType) {
         if (filter != null && !filter.isEmpty()) {
-            return weekRepository.findBySubjectNameContainsIgnoreCaseAndWeekTypeIgnoreCase(filter,weekType);
+            return weekRepository.findBySubjectNameContainsIgnoreCaseAndWeekTypeIgnoreCase(filter, weekType);
         } else {
             return weekRepository.findByWeekType(weekType);
         }

@@ -43,26 +43,24 @@ insert into week values (19,'friday',3,'Digital signal processing (pr)','even');
 
 insert into groups values ( 1, 'CI-161' );
 
-insert into user values (1,true,'email@gmail.com','Vitalii','Tasun','123','mind0wner',1);
-
-insert into user values (2,true,'ex@gmail.com','Andrey','Nechiporuk','qwe','VacIncom1ng',1);
-insert into user values (3,true,'amp@gmail.com','Andrey','Kolesnyk','qwe','trugaaa~',1);
-
-insert into user values (4,true,'le@gmail.com','Dmitriy','Senchuk','qwe','sen4',1);
-insert into user values (5,true,'exam@gmail.com','Vasilii','Petrov','qwe','VasPet',1);
-insert into user values (6,true,'my@gmail.com','Pavel','Gerashchenko','qwe','pashgun',1);
-
-insert into user values (7,true,'mail@gmail.com','James','Harden','qwe','beard',1);
-insert into user values (8,true,'123@gmail.com','Damian','Lillard','qwe','time',1);
-
- insert into user_role values ( 1,'ADMIN' );
- insert into user_role values ( 1,'MONITOR' );
- insert into user_role values ( 2,'STUDENT' );
- insert into user_role values ( 3,'STUDENT' );
- insert into user_role values ( 4,'STUDENT' );
- insert into user_role values ( 5,'STUDENT' );
- insert into user_role values ( 6,'STUDENT' );
- insert into user_role values ( 7,'STUDENT' );
- insert into user_role values ( 8,'STUDENT' );
-
-
+insert into user values (1,'null',true,'email@gmail.com','Vitalii','Tasun','123','mind0wner',1);
+--
+insert into user values (2,'null',true,'ex@gmail.com','Andrey','Nechiporuk','qwe','VacIncom1ng',1);
+-- insert into user values (3,true,'amp@gmail.com','Andrey','Kolesnyk','qwe','trugaaa~',1);
+--
+-- insert into user values (4,true,'le@gmail.com','Dmitriy','Senchuk','qwe','sen4',1);
+-- insert into user values (5,true,'exam@gmail.com','Vasilii','Petrov','qwe','VasPet',1);
+-- insert into user values (6,true,'my@gmail.com','Pavel','Gerashchenko','qwe','pashgun',1);
+--
+-- insert into user values (7,true,'mail@gmail.com','James','Harden','qwe','beard',1);
+-- insert into user values (8,true,'123@gmail.com','Damian','Lillard','qwe','time',1);
+--
+insert into user_role values ( 1,'ADMIN' );
+-- insert into user_role values ( 1,'MONITOR' );
+-- insert into user_role values ( 2,'STUDENT' );
+-- insert into user_role values ( 3,'STUDENT' );
+-- insert into user_role values ( 4,'STUDENT' );
+-- insert into user_role values ( 5,'STUDENT' );
+-- insert into user_role values ( 6,'STUDENT' );
+-- insert into user_role values ( 7,'STUDENT' );
+-- insert into user_role values ( 8,'STUDENT' );

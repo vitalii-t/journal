@@ -6,10 +6,13 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "registry")
-@Data @NoArgsConstructor @AllArgsConstructor
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Registry {
 
     @Id
@@ -20,9 +23,8 @@ public class Registry {
 
     private String subject;
 
-    private Long studentId;
-
-    private double mark;
+    @ElementCollection(targetClass = Long.class, fetch = FetchType.EAGER)
+    private List<Long> studentId;
 
     private LocalDate date;
 

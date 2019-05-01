@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface WeekRepository extends JpaRepository<Week, Long> {
-    List<Week> findBySubjectNameContainsIgnoreCaseAndWeekTypeIgnoreCase(String subjName,String weekType);
+    List<Week> findBySubjectNameContainsIgnoreCaseAndWeekTypeIgnoreCase(String subjName, String weekType);
 
     List<Week> findByWeekType(String weekType);
 

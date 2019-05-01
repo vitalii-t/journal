@@ -20,7 +20,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public WebSecurityConfig(UserService userService) {
-    this.userService=userService;
+        this.userService = userService;
     }
 
     @Override
@@ -28,28 +28,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         String login = "/login";
         http
                 .authorizeRequests()
-                    .antMatchers("/", "/registration","/css/**","/h2_console/**").permitAll()
-                    .anyRequest().authenticated()
+                .antMatchers("/", "/registration", "/css/**", "/h2_console/**", "/activate/*").permitAll()
+                .anyRequest().authenticated()
                 .and()
-                    .formLogin()
-                    .loginPage(login)
-                    .permitAll()
-                    .defaultSuccessUrl("/")
-                    .loginProcessingUrl(login)
+                .formLogin()
+                .loginPage(login)
+                .permitAll()
+                .defaultSuccessUrl("/main")
+                .loginProcessingUrl(login)
                 .and()
-                    .logout()
-                    .logoutUrl("/logout")
-                    .logoutSuccessUrl(login)
-//                .and()
-//                .logout()
-                    .permitAll();
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl(login)
+                .permitAll();
 
-//        http.authorizeRequests()
-//                .antMatchers("/").permitAll()
-//                .antMatchers("/h2_console/**").permitAll();
-//
-//        http.csrf().disable();
-//        http.headers().frameOptions().disable();
     }
 
     @Override

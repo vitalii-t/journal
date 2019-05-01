@@ -1,26 +1,24 @@
 package com.journal.business.controller;
 
-import com.journal.data.entities.Group;
-import com.journal.data.entities.Role;
+import com.journal.business.service.UserService;
 import com.journal.data.entities.User;
-import com.journal.data.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Collections;
+import java.util.Map;
 
 @Controller
 public class RegistrationController {
 
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Autowired
-    public RegistrationController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public RegistrationController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping("/registration")
@@ -29,24 +27,25 @@ public class RegistrationController {
     }
 
     @PostMapping(path = "/registration")
-    public String addUser(User user, Model model) {
-        User dbUser = userRepository.findByUsername(user.getUsername());
-        if(null!=dbUser){
-            model.addAttribute("msg","USER ALREADY EXISTS");
+    public String addUser(User user, Map<String, Object> model) {
+        if (!userService.addUser(user)) {
+            model.put("msg", "User exists!");
             return "registration";
         }
-        Group group = new Group();
-        group.setIdentifier("CI-161");
-        group.setUsers(Collections.singletonList(user));
-        user.setActive(true);
-        user.setRoles(Collections.singleton(Role.ADMIN));
-        user.setGroup(group);
-        userRepository.save(user);
         return "redirect:/login";
     }
-//
-//    @RequestMapping("/login")
-//    public String login() {
-//        return "login";
-//    }
+
+    @GetMapping("/activate/{code}")
+    public String activate(Model model, @PathVariable String code) {
+        boolean isActivated = userService.activateUser(code);
+
+        if (isActivated) {
+            model.addAttribute("message", "Account successfully activated");
+
+        } else {
+            model.addAttribute("message", "Activation code is not found!");
+        }
+
+        return "activate";
+    }
 }
