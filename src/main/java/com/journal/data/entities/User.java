@@ -7,6 +7,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.Collection;
 import java.util.Set;
 
@@ -14,29 +16,39 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "user")
-public class User implements UserDetails {
+@Table(name = "users")
+public class User implements UserDetails  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "first_name")
+    @NotBlank(message = "First name can`t be empty")
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @Column(name = "last_name")
+    @NotBlank(message = "Last name can`t be empty")
+    @Column(name = "last_name", nullable = false)
     private String lastName;
 
+    @NotBlank(message = "Username can`t be empty")
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
+    @NotBlank(message = "Password can`t be empty")
     @Column(name = "password", nullable = false)
     private String password;
+
+    //@NotBlank(message = "Password confirmation can`t be empty")
+    @Transient
+    private String passwordConfirmation;
 
     @Column(name = "activation_code")
     private String activationCode;
 
-    @Column(name = "email")
+    @NotBlank(message = "Email can`t be empty")
+    @Email(message = "Email is not correct")
+    @Column(name = "email", nullable = false,unique = true)
     private String email;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -50,6 +62,22 @@ public class User implements UserDetails {
     private Set<Role> roles;
 
     private boolean active;
+
+    public boolean isAdmin(){
+        return roles.contains(Role.ADMIN);
+    }
+    public boolean isMonitor(){
+        return roles.contains(Role.MONITOR);
+    }
+    public boolean isAnon(){
+        return roles.contains(Role.ANON);
+    }
+    public boolean isApproved(){
+        return roles.contains(Role.APPROVED);
+    }
+    public boolean isStudent(){
+        return roles.contains(Role.STUDENT);
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

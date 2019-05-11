@@ -11,7 +11,7 @@ import java.util.List;
 public interface RegistryRepository extends JpaRepository<Registry, Long> {
     List<Registry> findByStudentIdAndPresentAndDateAndSubject(Long id, boolean present, LocalDate date, String subject);
 
-    Registry findByDate(LocalDate date);
+    List<Registry> findByDate(LocalDate date);
 
     List<Registry> findByStudentId(Long id);
 

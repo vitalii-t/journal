@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Service
 public class RegistryService {
@@ -20,21 +21,21 @@ public class RegistryService {
 
     }
 
-    public /*List<Registry>*/Registry registryByDate(LocalDate date){
+    public List<Registry> registryByDate(LocalDate date){
         return registryRepository.findByDate(date);
     }
 
-    public boolean insert(Registry registry, String date) {
-        Registry dbRecord = registryRepository.findByDate(registry.getDate());
+    public boolean insert(Registry registry) {
+//        Registry dbRecord = registryRepository.findByDate(registry.getDate());
+//
+//        if(null!=dbRecord){
+//            return false;
+//        }
+//        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("d-M-yyyy");
+//
+//        LocalDate studyDate = (LocalDate) dateFormat.parse(date);
 
-        if(null!=dbRecord){
-            return false;
-        }
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("d-M-yyyy");
-
-        LocalDate studyDate = (LocalDate) dateFormat.parse(date);
-
-        registry.setDate(studyDate);
+        registry.setDate(LocalDate.now());
 
         registryRepository.save(registry);
         return true;

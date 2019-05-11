@@ -23,8 +23,8 @@ public class Registry {
 
     private String subject;
 
-    @ElementCollection(targetClass = Long.class, fetch = FetchType.EAGER)
-    private List<Long> studentId;
+   // @ElementCollection(targetClass = Long.class, fetch = FetchType.EAGER)
+    private Long studentId;
 
     private LocalDate date;
 

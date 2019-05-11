@@ -4,9 +4,11 @@ import com.journal.data.entities.Group;
 import com.journal.data.entities.Role;
 import com.journal.data.entities.User;
 import com.journal.data.repository.UserRepository;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -19,10 +21,12 @@ public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final MailSender mailSender;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, MailSender mailSender) {
+    public UserService(@Lazy UserRepository userRepository, @Lazy MailSender mailSender, @Lazy PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.mailSender = mailSender;
+        this.passwordEncoder = passwordEncoder;
     }
 
 
@@ -45,6 +49,8 @@ public class UserService implements UserDetailsService {
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.ANON));
         user.setActivationCode(UUID.randomUUID().toString());
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
         userRepository.save(user);
 
         if (!StringUtils.isEmpty(user.getEmail())) {
@@ -69,13 +75,22 @@ public class UserService implements UserDetailsService {
             return false;
         }
 
+        Group g = new Group();
+        g.setIdentifier("CI-161");
+
+        user.setGroup(g);
         user.setActivationCode(null);
 
+        //TODO для тестов закоментить
         user.getRoles().clear();
-        user.setRoles(Collections.singleton(Role.APPROVED));
 
-        //userRepository.save(user);
-userRepository.flush();
+        //TODO для тестов закоментить
+        user.getRoles().add(Role.APPROVED);
+
+        //user.setRoles(Collections.singleton(Role.APPROVED));
+
+        userRepository.save(user);
+//userRepository.flush();
         return true;
     }
 
@@ -98,7 +113,6 @@ userRepository.flush();
                 user.getRoles().add(Role.valueOf(key));
             }
         }
-
         userRepository.save(user);
     }
 }

@@ -8,7 +8,7 @@
         <br/>
         <div class="a"><label>Email: <input type="email" name="email" value="${user.getEmail()}"></label></div>
         <br/>
-        <div class="a"><label>Group: <input type="text" name="group" value=""></label></div>
+        <div class="a"><label>Group: <input type="text" name="group" value="CI-161"></label></div>
         <#list roles as role>
             <div>
                 <label><input type="checkbox"

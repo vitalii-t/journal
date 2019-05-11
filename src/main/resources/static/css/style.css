@@ -7,10 +7,15 @@
     margin-bottom: 5px;
 }
 .a input:hover{
-    cursor:pointer;
+    cursor:text;
 }
-.left{
 
+.ra{
+margin-left: auto;
+}
+
+
+.left{
     width: 900px;
     margin-left: 30px;
 }
@@ -31,4 +36,16 @@
 
 .btn input:hover{
     cursor: pointer;
+}
+
+body{
+    background-color: #525252;
+}
+.centered-form{
+    margin-top: 60px;
+}
+
+.centered-form .panel{
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
 }

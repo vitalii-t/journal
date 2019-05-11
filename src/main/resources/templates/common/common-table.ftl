@@ -1,5 +1,5 @@
 <#import "common.ftl" as c>
-<#macro table <#--type--> spec collection filt>
+<#macro table spec collection filt>
 
 
     <@c.page>
@@ -15,7 +15,7 @@
     <p></p>
 </div>
 <div>
-        <table align="center" style="width: 70%" cellspacing="0" border="1">
+        <table align="center" style="width: 55%" cellspacing="0" border="1">
             <th>Week day</th>
             <th>Index number</th>
             <th>Subject</th>
@@ -27,7 +27,6 @@
                 </tr>
             </#list>
         </table>
-    <p></p>
 </div>
 <#--        <table align="center" style="width: 70%" border="1" cellspacing="0">-->
 <#--            <th>Week day</th>-->

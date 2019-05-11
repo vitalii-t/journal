@@ -1,4 +1,5 @@
 <#import "common/common.ftl" as c>
+<#include "common/security.ftl">
 
 <@c.page>
     <div>
@@ -13,15 +14,32 @@
             <th>Role</th>
             <#list user as u>
                 <#list u.getRoles() as r>
-                <tr>
-                    <td align="center">${u.getFirstName()}</td>
-                    <td align="center">${u.getLastName()}</td>
-                    <td align="center">${u.getUsername()}</td>
-                    <td align="center">${u.getGroup().getIdentifier()}</td>
-                    <td align="center">${r.getAuthority()}</td>
-                </tr>
+                    <tr>
+                        <td align="center">${u.getFirstName()}</td>
+                        <td align="center">${u.getLastName()}</td>
+                        <td align="center">${u.getUsername()}</td>
+                        <td align="center">${u.getGroup().getIdentifier()}</td>
+                        <td align="center">${r.getAuthority()}</td>
+                        <#if isMonitor>
+                            <td><a href="/users/${u.getId()}">edit</a></td>
+                        </#if>
+                    </tr>
                 </#list>
             </#list>
+            <#--            <#list user as u>-->
+            <#--                <#list u.getRoles() as r>-->
+            <#--                    <tr>-->
+            <#--                        <td align="center">${u.firstName}</td>-->
+            <#--                        <td align="center">${u.lastName}</td>-->
+            <#--                        <td align="center">${u.username}</td>-->
+            <#--                        <td align="center">${u.group.identifier}</td>-->
+            <#--                        <td align="center">${r.getAuthority()}</td>-->
+            <#--                        <#if isMonitor>-->
+            <#--                        <td><a href="/users/${u.id}">edit</a></td>-->
+            <#--                        </#if>-->
+            <#--                    </tr>-->
+            <#--                </#list>-->
+            <#--            </#list>-->
         </table>
     <#else >
         <p>No users yet</p>

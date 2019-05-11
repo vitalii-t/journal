@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 @RequestMapping("/registry")
@@ -20,14 +21,14 @@ public class RegistryController {
         this.registryService = registryService;
     }
 
-//    @GetMapping("{date}")
-//    public String dateRegistry(@PathVariable LocalDate date, Model model){
-//
-//        /*List<Registry>*/Registry registry = registryService.registryByDate(date);
-//
-//        model.addAttribute("reg",registry);
-//        return "records";
-//    }
+    @GetMapping/*("{date}")*/
+    public String dateRegistry(/*@PathVariable LocalDate date,*/ Model model){
+
+        List<Registry> registry = registryService.registryByDate(LocalDate.now());
+
+        model.addAttribute("registry",registry);
+        return "records";
+    }
 
     @GetMapping("/insert")
     public String insertRecord(){
@@ -36,11 +37,12 @@ public class RegistryController {
 
 
     @PostMapping("/insert")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public String insertRecord(
-            Registry registry, Model model,@RequestParam String date/*,
+            Registry registry, Model model/*,@RequestParam String date*//*,
             Map<String, String> form*/
     ){
-        if(!registryService.insert(registry,date)){
+        if(!registryService.insert(registry)){
             model.addAttribute("msg","Record already exists");
         }
         return "addRecord";
