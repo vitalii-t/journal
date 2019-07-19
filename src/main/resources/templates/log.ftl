@@ -107,7 +107,7 @@
                                            placeholder="Password">
                                 </div>
                                 </#if>
-                            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                            <#--<input type="hidden" name="_csrf" value="${_csrf.token}"/>-->
 
                             <#if isRegForm>
                             <input type="submit" value="Sign Up" class="btn btn-info btn-block"><br>

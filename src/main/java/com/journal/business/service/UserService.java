@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 @Service
 public class UserService implements UserDetailsService {
 
-
     private final UserRepository userRepository;
     private final MailSender mailSender;
     private final PasswordEncoder passwordEncoder;
@@ -28,7 +27,6 @@ public class UserService implements UserDetailsService {
         this.mailSender = mailSender;
         this.passwordEncoder = passwordEncoder;
     }
-
 
     public List<User> findAllUsers() {
         return userRepository.findAll();
