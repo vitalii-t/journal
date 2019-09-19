@@ -2,7 +2,6 @@ package com.journal.data.dto;
 
 import com.journal.data.entities.Group;
 import com.journal.data.entities.Role;
-import com.journal.data.entities.User;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +13,6 @@ import java.util.Set;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class UserDto {
-    //private Long id;
 
     private String firstName;
 
@@ -22,15 +20,10 @@ public class UserDto {
 
     private String username;
 
-    private String password;
-
-    private String activationCode;
-
     private String email;
 
     private Group group;
 
     private Set<Role> roles;
 
-    private boolean active;
 }
