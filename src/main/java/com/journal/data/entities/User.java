@@ -39,7 +39,6 @@ public class User implements UserDetails  {
     @Column(name = "password", nullable = false)
     private String password;
 
-    //@NotBlank(message = "Password confirmation can`t be empty")
     @Transient
     private String passwordConfirmation;
 

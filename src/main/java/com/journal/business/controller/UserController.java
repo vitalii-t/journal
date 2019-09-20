@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/users")
@@ -26,11 +27,12 @@ public class UserController {
         this.userService = userService;
     }
 
-
     @GetMapping
     public String getAllUsers(Model model) {
 
-        List<User> users = userService.findAllUsers();
+        List<UserDto> users = userService.findAllUsers().stream()
+                .map(UserDto::new)
+                .collect(Collectors.toList());
         model.addAttribute("user", users);
 
         return "users";
@@ -50,12 +52,9 @@ public class UserController {
             @RequestParam String email,
             @RequestParam String group,
             @RequestParam Map<String, String> form,
-            @RequestParam("userId") User user
+            @RequestParam("id") User user
     ) {
-
         userService.edit(user, username, email,group,form);
-
         return "redirect:/users";
     }
-
 }

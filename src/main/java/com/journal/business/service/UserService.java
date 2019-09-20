@@ -1,5 +1,6 @@
 package com.journal.business.service;
 
+import com.journal.data.dto.UserDto;
 import com.journal.data.entities.Group;
 import com.journal.data.entities.Role;
 import com.journal.data.entities.User;
@@ -35,8 +36,10 @@ public class UserService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByUsername(username);
+    public UserDetails loadUserByUsername(String username) {
+        return Optional
+                .ofNullable(userRepository.findByUsername(username))
+                .orElseThrow(() -> new UsernameNotFoundException("User with such username not found"));
     }
 
     public boolean addUser(User user) {
@@ -57,7 +60,7 @@ public class UserService implements UserDetailsService {
             String message = String.format(
                     "Hello, %s! \n" +
                             "Welcome to CI-161`s group site. \n" +
-                            " if you don`t want just ignore message. \n"+
+                            " if you don`t want just ignore message. \n" +
                             "Please, visit next link: http://localhost:8080/activate/%s",
                     user.getUsername(),
                     user.getActivationCode()
@@ -89,13 +92,13 @@ public class UserService implements UserDetailsService {
 
         //user.setRoles(Collections.singleton(Role.APPROVED));
 
-        userRepository.save(user);
-//userRepository.flush();
+        userRepository.saveAndFlush(user);
         return true;
     }
 
-    public void edit(User user, String username, String email,String group, Map<String, String> form) {
+    public void edit(User user, String username, String email, String group, Map<String, String> form) {
 
+//        User user = userRepository.findByUsername(userDto.getUsername());
         user.setUsername(username);
         user.setEmail(email);
         Group g = new Group();
