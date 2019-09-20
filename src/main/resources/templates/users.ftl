@@ -21,7 +21,7 @@
                         <td align="center">${u.getGroup().getIdentifier()}</td>
                         <td align="center">${r.getAuthority()}</td>
                         <#if isMonitor>
-                            <td><a href="/users/${u.getId()}">edit</a></td>
+                            <td><a href="/users/${u.id}">edit</a></td>
                         </#if>
                     </tr>
                 </#list>
